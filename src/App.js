@@ -22,11 +22,11 @@ class App extends Component {
 
         this.state = Article;
 
-        console.log(this.state);
+        // console.log(this.state);
     }
 
     componentDidUpdate() {
-        console.log("did update state: ", this.state);
+        // console.log("did update state: ", this.state);
     }
 
     addPost = (conElement, board) => {
@@ -43,7 +43,7 @@ class App extends Component {
                 "contents": conElement.contents.value,
             });
             
-            console.log("center: ", boardArray);
+            // console.log("center: ", boardArray);
             this.setState ({
                 [curBoard]: boardArray
             });
@@ -64,19 +64,20 @@ class App extends Component {
             return (list.key !== key);
         });
 
-        console.log(filteredItems);
-        console.log(curBoard);
+        // console.log(filteredItems);
+        // console.log(curBoard);
+
         this.setState ({
             [curBoard]: filteredItems
         });
         this.forceUpdate(); // render update
-        console.log(this.state);
+
+        // console.log(this.state);
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
         this.props.onSaveData(this.state);
-        console.log(event);
     }
 
     render() {
@@ -101,7 +102,7 @@ class App extends Component {
                     <Route exact path="/" component={AboutUs} />
                     <Route exact path="/post" component={PostBase} />
                     
-                    {
+                    {    // 게시판 목록 라우팅
                         [...Array(4)].map((x, i) => {
                             i++;
                             let path = "/post/board" + i;
@@ -113,7 +114,7 @@ class App extends Component {
                         })
                     }
 
-                    {
+                    {   // 게시글 라우팅
                         [...Array(4)].map((x, i) => {
                             i++;
                             return this.state['board' + i].map((item)=>{
@@ -129,7 +130,7 @@ class App extends Component {
                     }
 
 
-                    {
+                    {   // 게시판 글쓰기 라우팅
                         [...Array(4)].map((x, i) => {
                             i++;
                             let path = "/post/board" + i + '/new';
