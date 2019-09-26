@@ -40,7 +40,7 @@ class PostList extends Component {
                     })
                 }
                 
-                <Link to={newUrl}>글쓰기</Link>
+                <button><Link to={newUrl} className="newPost">글쓰기</Link></button>
             </div>
         );
     }

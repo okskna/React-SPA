@@ -1,32 +1,26 @@
 {
-  "name": "react-spa",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1"
-  },
+  "name": "spatest",
+  "version": "1.0.0",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "client": "cd client && npm run start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okskna/React-SPA.git"
+  },
+  "author": "ksk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/okskna/React-SPA/issues"
+  },
+  "homepage": "https://github.com/okskna/React-SPA#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.2"
   }
 }

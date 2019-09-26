@@ -13,18 +13,36 @@ import Photo from './Photo';
 import PhotoSide from './PhotoSide';
 import Login from './Login';
 
-import Article from "./articletest.json";
+// import Article from "./articletest.json";
 import PostList from './PostList';
 
 class App extends Component {
     constructor(props) {
         super(props);
 
-        this.state = Article;
+        this.state = {
+            
+        };
 
         // console.log(this.state);
     }
 
+    componentDidMount() {
+        this.callApi()
+        .then(res => {
+            console.log(res);
+            return this.setState(res);
+        }).catch(err => console.log(err));
+    }
+
+    callApi = async () => {
+        const response = await fetch('/api/articles');
+        console.log('res: ', response);
+        const body = await response.json();
+        console.log('body: ', body);
+        return body;
+    }
+        
     componentDidUpdate() {
         // console.log("did update state: ", this.state);
     }
@@ -83,6 +101,7 @@ class App extends Component {
     render() {
         const title = "React Board";
         console.log("App rendering...");
+        console.log(this.state);
 
         return (
             <div>
@@ -103,6 +122,7 @@ class App extends Component {
                     <Route exact path="/post" component={PostBase} />
                     
                     {    // 게시판 목록 라우팅
+                        this.state['board1'] ? (
                         [...Array(4)].map((x, i) => {
                             i++;
                             let path = "/post/board" + i;
@@ -111,10 +131,12 @@ class App extends Component {
                                     (props) => <PostList {...props} post={this.state['board' + i]} board={i} deletepost={this.deletePost}/> 
                                 } />
                             );
-                        })
+                        // })
+                        })) : ''
                     }
 
                     {   // 게시글 라우팅
+                        this.state['board1'] ? (
                         [...Array(4)].map((x, i) => {
                             i++;
                             return this.state['board' + i].map((item)=>{
@@ -126,11 +148,13 @@ class App extends Component {
                                     } />
                                 );
                             });
-                        })
+                        // })
+                        })) : ''
                     }
 
 
                     {   // 게시판 글쓰기 라우팅
+                        this.state['board1'] ? (
                         [...Array(4)].map((x, i) => {
                             i++;
                             let path = "/post/board" + i + '/new';
@@ -139,7 +163,8 @@ class App extends Component {
                                     (props) => <AddPost {...props} post={this.addPost} board={i}/> 
                                 } />
                             );
-                        })
+                        // })
+                        })) : ''
                     }
 
                     <Route path="/photo" component={Photo} />
