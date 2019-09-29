@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class PostList extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     delete = (key, board) => {
         //게시판 삭제 기능
         console.log("This is deleteContent method.", key);

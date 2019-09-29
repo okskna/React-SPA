@@ -51,7 +51,7 @@ app.get('/api/articles', (req, res) => {
     Promise.all(myPromiseArray)
     .then((messages) => {
         console.log(messages);
-        res.send(article)
+        res.send(article);
     });
 });
 

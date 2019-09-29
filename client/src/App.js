@@ -16,6 +16,8 @@ import Login from './Login';
 // import Article from "./articletest.json";
 import PostList from './PostList';
 
+// import { post } from 'axios';
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -65,16 +67,30 @@ class App extends Component {
             this.setState ({
                 [curBoard]: boardArray
             });
+
+            // const formData = new FormData();
+            // formData.append('title', conElement.title.value);
+            // formData.append('ip', conElement.ip.value);
+            // formData.append('datee', conElement.date.value);
+            // formData.append('writer', conElement.writer.value);
+            // formData.append('contents', conElement.contents.value);
+
+            // const url = '/api/articles';
+            // const config = {
+            //     headers: {
+            //         'content-type': 'multipart/form-data'
+            //     }
+            // }
+
+            // post(url, formData, config);
+
             conElement.title.value= "";
             conElement.date.value= "";
             conElement.ip.value= "";
             conElement.writer.value= "";
             conElement.contents.value= "";
         }
-
-        this.forceUpdate(); // render update
     }
-
 
     deletePost = (key, board) => {
         let curBoard = String("board" + board);
