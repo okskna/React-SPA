@@ -53,7 +53,7 @@ class App extends Component {
 
         if (conElement.title.value !== "") {
             boardArray.unshift ({
-                "key": String(Date.now()),
+                "id": String(Date.now()),
                 "title": conElement.title.value,
                 "writer": conElement.writer.value,
                 "date": conElement.date.value,
@@ -79,7 +79,7 @@ class App extends Component {
     deletePost = (key, board) => {
         let curBoard = String("board" + board);
         let filteredItems = this.state[curBoard].filter((list) => {
-            return (list.key !== key);
+            return (list.id !== key);
         });
 
         // console.log(filteredItems);
@@ -140,7 +140,7 @@ class App extends Component {
                         [...Array(4)].map((x, i) => {
                             i++;
                             return this.state['board' + i].map((item)=>{
-                                let j = item.key*1;
+                                let j = item.id*1;
                                 let myPath = "/post/board" + i + "/" + j;
                                 return (
                                     <Route key={i*100 + j} path={myPath} render={ 

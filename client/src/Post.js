@@ -6,7 +6,7 @@ class Post extends Component {
         let post = this.props.post;
         console.log("This is Post");
         return (
-            <div key={post.key}>
+            <div key={post.id}>
                 <h1 className="title">
                     {post.title}
                 </h1>

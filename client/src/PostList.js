@@ -17,14 +17,16 @@ class PostList extends Component {
         let board = this.props.board;
         let newUrl = '/post/board' + board + '/new';
 
+        let urlIdx = 1;
+
         return (
             <div>
                 <h2>게시글 리스트</h2>
                 {
                     post.map((item)=>{
-                        let makeUrl = '/post/board' + board + '/' + item.key;
+                        let makeUrl = '/post/board' + board + '/' + urlIdx++;
                         return (
-                            <li key={item.key}>
+                            <li key={item.id}>
                                 <h4>
                                     <Link to={makeUrl}>{item.title}</Link>
                                 </h4>
@@ -33,7 +35,7 @@ class PostList extends Component {
                                 </div>
                                 <button onClick={(event) => {
                                     event.preventDefault();
-                                    return this.delete(item.key, board);
+                                    return this.delete(item.id, board);
                                     }}>삭제</button>
                             </li>
                         );
