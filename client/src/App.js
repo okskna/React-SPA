@@ -1,20 +1,9 @@
 import React, { Component } from 'react';
-import {
-    Route,
-    NavLink
-} from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 
-import AboutUs from './AboutUs';
-import Post from './Post';
-import PostBase from './PostBase';
-import PostSide from './PostSide';
-import AddPost from './AddPost';
-import Photo from './Photo';
-import PhotoSide from './PhotoSide';
-import Login from './Login';
-
-// import Article from "./articletest.json";
-import PostList from './PostList';
+import SideBar from './SideBar';
+import BoardList from './BoardList';
+import Posts from './Posts';
 
 // import { post } from 'axios';
 
@@ -23,35 +12,163 @@ class App extends Component {
         super(props);
 
         this.state = {
-            
+            selBoardId: null,
         };
-
-        // console.log(this.state);
     }
 
-    componentDidMount() {
-        this.callApi()
-        .then(res => {
-            console.log(res);
-            return this.setState(res);
-        }).catch(err => console.log(err));
+    render() {
+        console.log("App rendering...");
+        console.log(this.state);
+
+        return (
+            <div>
+                <Header />
+                {/* <Main setfun={ selBoardId => this.setState({selBoardId})} /> */}
+                <Main />
+                <Footer />
+            </div>
+        );
+    }
+}
+
+const Header = () => {
+    return (
+        <ul className="header">
+            <h2>{"React Board"}</h2>
+            <li><NavLink exact to="/main">{"소개"}</NavLink></li>
+            <li><NavLink to="/boardList">{"게시판"}</NavLink></li>
+            <li><NavLink to="/photoList">{"사진"}</NavLink></li>
+            <li><NavLink to="/login">{"로그인"}</NavLink></li>
+        </ul>
+    )
+}
+
+class Main extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selBoardId: null,
+            selPostId: null,
+        };
     }
 
+    render() {
+        return (
+            <div>
+                <SideBar
+                    onSelectBoard={selBoardId => this.setState({ selBoardId })} />
+                <Route exact path={'/boardList'} render={() => <div>Main Banner</div>} />
+                <Route exact path={'/board/:boardid'} render={
+                    (props) => <BoardList {...props} selBoardId={this.state.selBoardId} onSelectPost={selPostId => this.setState({ selPostId })} />
+                } />
+                <Route path={'/board/:boardid/post'} render={
+                    (props) => <Posts {...props} selBoardId={this.state.selBoardId} selPostId={this.state.selPostId} />
+                } />
+                {/* {
+                    this.state.userPage === null ?
+                        <div> Main Banner </div>
+                        : (
+                            this.state.selPostId === null ?
+                                <BoardList selBoardId={this.state.selBoardId} onSelectPost={selPostId => this.setState({ selPostId })} />
+                                : <Posts selBoardId={this.state.selBoardId} selPostId={this.state.selPostId} />
+                        )
+                } */}
+
+                <div className="clear" />
+            </div>
+        )
+    }
+}
+
+// q1. How to get 'this.state' from App component to Main component?
+//      1-1. <Main myProps={this.state} />
+//      1-2. Make a class component not function component , and use Main.state
+// q2. How to operate onSelectBoard?
+
+
+// const Contents = () => { return (
+//     <div className="bodyarea">
+//         <Route exact path="/main" component={AboutUs} />
+//         <Route exact path="/boardList" component={PostBase} />
+
+//         {    // 게시판 목록 라우팅
+//             this.state['board1'] ? (
+//             [...Array(4)].map((x, i) => {
+//                 i++;
+//                 let path = "/post/board/b0" + i;
+//                 return (
+//                     <Route key={i*100} exact path={path} render={ 
+//                         (props) => <PostList {...props} post={this.state['board' + i]} board={i} deletepost={this.deletePost}/> 
+//                     } />
+//                 );
+//             // })
+//             })) : ''
+//         }
+
+//         {   // 게시글 라우팅
+//             this.state['board1'] ? (
+//             [...Array(4)].map((x, i) => {
+//                 i++;
+//                 return this.state['board' + i].map((item)=>{
+//                     let j = item.id*1;
+//                     let myPath = "/postList/board" + i + "/" + j;
+//                     return (
+//                         <Route key={i*100 + j} path={myPath} render={ 
+//                             (props) => <Post {...props} post={item}/>
+//                         } />
+//                     );
+//                 });
+//             // })
+//             })) : ''
+//         }
+
+
+//         {   // 게시판 글쓰기 라우팅
+//             this.state['board1'] ? (
+//             [...Array(4)].map((x, i) => {
+//                 i++;
+//                 let path = "/post/board" + i + '/new';
+//                 return (
+//                     <Route key={i*1} path={path} render={ 
+//                         (props) => <AddPost {...props} post={this.addPost} board={i}/> 
+//                     } />
+//                 );
+//             // })
+//             })) : ''
+//         }
+
+//         <Route path="/photo" component={Photo} />
+//         <Route path="/login" component={Login} />
+//     </div>
+// )}
+
+const Footer = () => {
+    return (
+        <div className="footer">
+            cdngmn014@gmail.com
+    </div>
+    )
+}
+
+export default App;
+
+
+
+
+
+
+/*
     callApi = async () => {
-        const response = await fetch('/api/articles');
+        const response = await fetch('/main');
         console.log('res: ', response);
         const body = await response.json();
         console.log('body: ', body);
         return body;
     }
-        
-    componentDidUpdate() {
-        // console.log("did update state: ", this.state);
-    }
 
     addPost = (conElement, board) => {
         let curBoard = String("board" + board);
-        let boardArray = this.state[curBoard];        
+        let boardArray = this.state[curBoard];
 
         if (conElement.title.value !== "") {
             boardArray.unshift ({
@@ -62,7 +179,7 @@ class App extends Component {
                 "ip": conElement.ip.value,
                 "contents": conElement.contents.value,
             });
-            
+
             // console.log("center: ", boardArray);
             this.setState ({
                 [curBoard]: boardArray
@@ -113,88 +230,4 @@ class App extends Component {
         event.preventDefault();
         this.props.onSaveData(this.state);
     }
-
-    render() {
-        const title = "React Board";
-        console.log("App rendering...");
-        console.log(this.state);
-
-        return (
-            <div>
-            <ul className="header">
-                <h2>{title}</h2>
-                <li><NavLink exact to="/">{"소개"}</NavLink></li>
-                <li><NavLink to="/post">{"게시판"}</NavLink></li>
-                <li><NavLink to="/photo">{"사진"}</NavLink></li>
-                <li><NavLink to="/login">{"로그인"}</NavLink></li>
-            </ul>
-            <div className="main">
-                <div className="sidebar">
-                    <Route path="/post" component={PostSide} />
-                    <Route path="/photo" component={PhotoSide} /> 
-                </div>
-                <div className="bodyarea">
-                    <Route exact path="/" component={AboutUs} />
-                    <Route exact path="/post" component={PostBase} />
-                    
-                    {    // 게시판 목록 라우팅
-                        this.state['board1'] ? (
-                        [...Array(4)].map((x, i) => {
-                            i++;
-                            let path = "/post/board" + i;
-                            return (
-                                <Route key={i*100} exact path={path} render={ 
-                                    (props) => <PostList {...props} post={this.state['board' + i]} board={i} deletepost={this.deletePost}/> 
-                                } />
-                            );
-                        // })
-                        })) : ''
-                    }
-
-                    {   // 게시글 라우팅
-                        this.state['board1'] ? (
-                        [...Array(4)].map((x, i) => {
-                            i++;
-                            return this.state['board' + i].map((item)=>{
-                                let j = item.id*1;
-                                let myPath = "/post/board" + i + "/" + j;
-                                return (
-                                    <Route key={i*100 + j} path={myPath} render={ 
-                                        (props) => <Post {...props} post={item}/>
-                                    } />
-                                );
-                            });
-                        // })
-                        })) : ''
-                    }
-
-
-                    {   // 게시판 글쓰기 라우팅
-                        this.state['board1'] ? (
-                        [...Array(4)].map((x, i) => {
-                            i++;
-                            let path = "/post/board" + i + '/new';
-                            return (
-                                <Route key={i*1} path={path} render={ 
-                                    (props) => <AddPost {...props} post={this.addPost} board={i}/> 
-                                } />
-                            );
-                        // })
-                        })) : ''
-                    }
-
-                    <Route path="/photo" component={Photo} />
-                    <Route path="/login" component={Login} />
-                </div>
-                <div className="clear"></div>
-            </div>
-            <div className="footer">
-                cdngmn014@gmail.com
-            </div>
-            </div>
-
-        );
-    }
-}
-
-export default App;
+*/

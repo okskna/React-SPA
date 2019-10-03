@@ -1,0 +1,52 @@
+{
+    "boardList" : [
+        {"boardId":"b00", "boardName":"Hobby"},
+        {"boardId":"b01", "boardName":"Work"}
+    ],
+    "boards" :[
+        {
+            "boardId":"b00", 
+            "posts" : [
+                {
+                    "postId": "p00",
+                    "postTitle": "JSON test A-1",
+                    "postDate": "09/17/19",
+                    "postIp": "0.0.0.1",
+                    "postContents": "This is test page. Lorem rorem lorem. A Suspendisse feugiat eget nulla interdum malesuada. Sed laoreet eget nulla vitae pharetra. Integer commodo mattis dictum.",
+                    "postWriter": "김선관"
+                },
+                {
+                    "postId": "p01",
+                    "postTitle": "JSON test A-2",
+                    "postDate": "09/18/19",
+                    "postIp": "0.0.0.2",
+                    "postContents": "test2 contents.",
+                    "postWriter": "김선관2"
+                }
+            ],
+            "created_at" : "2019-09-17 12:33:22"
+        },
+        {
+            "boardId":"b01", 
+            "posts" : [
+                {
+                    "postId": "p00",
+                    "postTitle": "JSON test B-1",
+                    "postDate": "09/17/19",
+                    "postIp": "0.0.0.1",
+                    "postContents": "This is test page. Lorem rorem lorem. A Suspendisse feugiat eget nulla interdum malesuada. Sed laoreet eget nulla vitae pharetra. Integer commodo mattis dictum.",
+                    "postWriter": "김선관"
+                },
+                {
+                    "postId": "p01",
+                    "postTitle": "JSON test B-2",
+                    "postDate": "09/18/19",
+                    "postIp": "0.0.0.2",
+                    "postContents": "test2 contents.",
+                    "postWriter": "김선관2"
+                }
+            ],
+            "created_at" : "2019-09-17 12:35:38"
+        }
+    ]   
+}
