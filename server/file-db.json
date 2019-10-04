@@ -9,18 +9,18 @@
             "posts" : [
                 {
                     "postId": "p00",
-                    "postTitle": "JSON test A-1",
+                    "postTitle": "Hobby-1",
                     "postDate": "09/17/19",
                     "postIp": "0.0.0.1",
-                    "postContents": "This is test page. Lorem rorem lorem. A Suspendisse feugiat eget nulla interdum malesuada. Sed laoreet eget nulla vitae pharetra. Integer commodo mattis dictum.",
+                    "postContents": "One face Hobby",
                     "postWriter": "김선관"
                 },
                 {
                     "postId": "p01",
-                    "postTitle": "JSON test A-2",
+                    "postTitle": "Hobby-2",
                     "postDate": "09/18/19",
                     "postIp": "0.0.0.2",
-                    "postContents": "test2 contents.",
+                    "postContents": "Two face Hobby",
                     "postWriter": "김선관2"
                 }
             ],
@@ -31,18 +31,18 @@
             "posts" : [
                 {
                     "postId": "p00",
-                    "postTitle": "JSON test B-1",
+                    "postTitle": "Work-1",
                     "postDate": "09/17/19",
                     "postIp": "0.0.0.1",
-                    "postContents": "This is test page. Lorem rorem lorem. A Suspendisse feugiat eget nulla interdum malesuada. Sed laoreet eget nulla vitae pharetra. Integer commodo mattis dictum.",
+                    "postContents": "Working Dead is me.",
                     "postWriter": "김선관"
                 },
                 {
                     "postId": "p01",
-                    "postTitle": "JSON test B-2",
+                    "postTitle": "Work-2",
                     "postDate": "09/18/19",
                     "postIp": "0.0.0.2",
-                    "postContents": "test2 contents.",
+                    "postContents": "Working Deads are us.",
                     "postWriter": "김선관2"
                 }
             ],

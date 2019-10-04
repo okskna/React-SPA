@@ -48,17 +48,17 @@ ul.header li a {
   float: left;
 }
 
-.sidebar ul {
+ul.sidebar {
   list-style: none;
   padding: 0;
 }
 
-.sidebar ul h2 {
+ul.sidebar h2 {
   color: #111;
   text-align: center;
 }
 
-.sidebar ul li a{
+ul.sidebar li a{
   text-align: center;
   color: #FFF;
   font-weight: bold;
@@ -73,7 +73,7 @@ ul.header li a {
   padding: 20px;
   /* height: 400px; */
   width: 72.9%;
-  overflow: scroll;
+  /* overflow: scroll; */
 }
 
 .bodyarea h2 {
