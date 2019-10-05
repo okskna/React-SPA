@@ -34,18 +34,18 @@ class Post extends Component {
     render() {
         const renderBoard = (this.state.posts !== null) ?
             (
-                <li>
+                <div>
                     <h2>{this.state.posts.postTitle}</h2>
-                    {this.state.posts.postDate} {this.state.posts.postWriter} <br />
+                    {this.state.posts.postDate}, {this.state.posts.postWriter} <br />
                     <p>{this.state.posts.postContents}</p>
                     <button>
                         <NavLink exact to={'/getBoard/' + this.props.boardId}>Prev</NavLink>
                     </button>
-                </li>
+                </div>
             ) :
-            <li>No post Loaded</li>
+            <div>No post Loaded</div>
             ;
-        return <ul className='bodyarea'>{renderBoard}</ul>;
+        return <div>{renderBoard}</div>;
     }
 }
 
