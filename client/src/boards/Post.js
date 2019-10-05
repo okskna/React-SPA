@@ -17,7 +17,7 @@ class Post extends Component {
     componentDidUpdate(prevProps) {
         if (prevProps.boardId !== this.props.boardId ||
             prevProps.postId !== this.props.postId) {
-            this.fetchTrans();
+            this.getPostsData();
         }
     }
 
