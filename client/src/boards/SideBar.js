@@ -14,12 +14,16 @@ class SideBar extends Component {
     }
 
     componentDidMount() {
+        this.getBoardList();
+    }
+
+    getBoardList = () => {
         fetch('/boardList')
-            .then(httpResultObject => httpResultObject.json())
-            .then(jsonObject => {
-                console.log(jsonObject);
-                return this.setState({ boardList: jsonObject });
-            });
+        .then(httpResultObject => httpResultObject.json())
+        .then(jsonObject => {
+            console.log(jsonObject);
+            return this.setState({ boardList: jsonObject });
+        });
     }
 
     handleClick = (item) => {
@@ -41,9 +45,9 @@ class SideBar extends Component {
                         </NavLink>
                     </li>
                 )
-            }) :
-            <div>No Board Loaded</div>
-            ;
+            }) 
+            : <div>No Board Loaded</div>
+        ;
 
         return (
             <ul className='sidebar'>

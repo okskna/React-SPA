@@ -11,13 +11,13 @@ class Post extends Component {
     }
 
     componentDidMount() {
-        this.getPostsData();
+        this.getPostsData(); //!Postst -> Post
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.boardId !== this.props.boardId ||
             prevProps.postId !== this.props.postId) {
-            this.fetchTrans();
+            this.fetchTrans(); //!
         }
     }
 
@@ -32,19 +32,22 @@ class Post extends Component {
     }
 
     render() {
+        const {postTitle, postDate, postContents, postWriter} = this.state; //!
+
         const renderBoard = (this.state.posts !== null) ?
             (
                 <div>
-                    <h2>{this.state.posts.postTitle}</h2>
-                    {this.state.posts.postDate}, {this.state.posts.postWriter} <br />
-                    <p>{this.state.posts.postContents}</p>
+                    <h2>{postTitle}</h2>
+                    {postDate}, {postWriter} <br />
+                    <p>{postContents}</p>
                     <button>
                         <NavLink exact to={'/getBoard/' + this.props.boardId}>Prev</NavLink>
                     </button>
                 </div>
-            ) :
-            <div>No post Loaded</div>
-            ;
+            ) 
+            : <div>No post Loaded</div>
+        ;
+
         return <div>{renderBoard}</div>;
     }
 }
